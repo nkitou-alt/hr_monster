@@ -14,6 +14,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="{{ '/assets/img/favicon.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
   {% feed_meta %}
 </head>
@@ -21,8 +23,7 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="{{ '/' | relative_url }}">
-        <svg class="sprout" viewBox="0 0 32 24" aria-hidden="true"><path d="M16 23V12" stroke="#2f9e6e" stroke-width="2.6" stroke-linecap="round"/><path d="M16 12C16 6 11 2 4 2c0 6 5 10 12 10z" fill="#4cbf86"/><path d="M16 12c0-5 4-9 11-9 0 5-4 9-11 9z" fill="#2f9e6e"/></svg>
-        <span>HR Monster</span>
+        <img class="logo" src="{{ '/assets/img/logo.png' | relative_url }}" alt="HR Monster by KITO." width="154" height="50">
       </a>
       <nav class="nav">
         <a href="{{ '/monsters/' | relative_url }}">モンスター図鑑</a>
