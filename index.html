@@ -33,6 +33,21 @@ layout: default
   </div>
 </section>
 
+<section class="wrap section" style="padding-top:0">
+  <a class="home-feature" href="{{ '/training/' | relative_url }}">
+    <div>
+      <span class="case-kicker">特集</span>
+      <h2>研修づくりを、4体のチームに任せよう。</h2>
+      <p>企画・教材開発・運営・評価を、トイモン、マナブー、モテナン、ミキワンがリレーでつなぎます。1本の研修ができるまでの作例も公開中。</p>
+      <span class="btn btn-primary">研修づくりを見る</span>
+    </div>
+    <div class="home-feature-team">
+      {% assign tskills = site.skills | where: "series", "training" | sort: "step" %}
+      {% for s in tskills %}{% assign m = site.monsters | where: "key", s.monster | first %}<img src="{{ m.image | relative_url }}" alt="{{ m.title }}">{% endfor %}
+    </div>
+  </a>
+</section>
+
 <section class="howto">
   <div class="wrap section">
     <div class="section-head"><h2>使い方は2通り</h2></div>

@@ -1,0 +1,55 @@
+---
+layout: default
+title: 研修づくり
+permalink: /training/
+---
+<section class="training-hero">
+  <div class="wrap">
+    <p class="case-kicker">特集</p>
+    <h1>研修づくりを、<br class="sp">4体のチームに任せよう。</h1>
+    <p class="lead">研修の企画から教材開発、当日の運営、効果の評価まで。研修づくりの工程を、4体のモンスターがリレーでつなぎます。</p>
+  </div>
+</section>
+
+<div class="wrap section">
+  <div class="relay">
+    {% assign tskills = site.skills | where: "series", "training" | sort: "step" %}
+    {% for s in tskills %}{% assign m = site.monsters | where: "key", s.monster | first %}
+    <a class="relay-step c-{{ m.color }}" href="{{ s.url | relative_url }}">
+      <span class="relay-no">STEP {{ s.step }}</span>
+      <img src="{{ m.image | relative_url }}" alt="{{ m.title }}">
+      <span class="relay-name">{{ m.title }}</span>
+      <span class="relay-skill">{{ s.title }}</span>
+      <span class="relay-desc">{{ s.summary }}</span>
+    </a>
+    {% endfor %}
+  </div>
+  <p class="center"><a class="btn btn-primary" href="{{ '/downloads/training-kit.zip' | relative_url }}" download>4つのスキルをまとめてダウンロード</a></p>
+  <p class="center small-note">ZIPを解凍すると、4つのスキルのZIPが入っています。1つずつClaudeに登録してください（<a href="{{ '/guide/' | relative_url }}#install">登録のしかた</a>）。</p>
+
+  <div class="section-head mt"><h2>作例</h2></div>
+  <p class="lead" style="margin-bottom:20px">4体のスキルで、実際に1本の研修をつくりました。最初の依頼から教材・運営・評価まで、すべて公開しています。</p>
+  <div class="case-list">
+    {% for c in site.cases %}
+    <a class="case-card" href="{{ c.url | relative_url }}">
+      <span class="case-kicker">作例</span>
+      <span class="case-card-title">{{ c.title }}</span>
+      <span class="case-card-desc">{{ c.summary }}</span>
+      <span class="case-card-team">{% for t in c.team %}{% assign tm = site.monsters | where: "key", t.monster | first %}<img src="{{ tm.image | relative_url }}" alt="{{ tm.title }}">{% endfor %}</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div class="section-head mt"><h2>このスキルの土台</h2></div>
+  <div class="prose">
+    <p>4つのスキルには、良い研修の前提をまとめた<strong>共通コンテキスト</strong>と、設計の進め方をまとめた<strong>共通の手順書</strong>が入っています（各スキルの references フォルダ）。</p>
+    <ul>
+      <li>研修の目的は、知識の伝達ではなく行動の変化</li>
+      <li>正解を教えるより、良い問いを投げる。対話から学びが生まれる余白を守る</li>
+      <li>当日の山場のネタは、事前学習で明かさない</li>
+      <li>どんな良い設計も、時間に収まらなければ絵に描いた餅。分単位で積む</li>
+      <li>学習目標・振り返り・アンケートを同じ言葉でつなぐ</li>
+    </ul>
+    <p>自社の方針に合わせて書きかえれば、モンスターたちが自社仕様の研修をつくるようになります。</p>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<section class="case-hero">
+  <div class="wrap narrow">
+    <p class="case-kicker">作例｜{{ page.series_name | default: "研修づくり" }}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="lead">{{ page.summary }}</p>
+    <dl class="case-facts">
+      {% for f in page.facts %}<div><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>{% endfor %}
+    </dl>
+    <div class="case-team">
+      {% for t in page.team %}{% assign tm = site.monsters | where: "key", t.monster | first %}
+      <a href="#step-{{ forloop.index }}" class="c-{{ tm.color }}">
+        <img src="{{ tm.image | relative_url }}" alt="{{ tm.title }}">
+        <span><small>STEP {{ forloop.index }}</small>{{ tm.title }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<article class="wrap narrow article case-body">
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  <aside class="cta c-mint">
+    <p>同じ研修づくりを、あなたのAIでも。</p>
+    <div class="skill-grid cta-skills">
+      {% for t in page.team %}{% assign s = site.skills | where: "key", t.skill | first %}{% if s %}{% include skill-card.html skill=s %}{% endif %}{% endfor %}
+    </div>
+    {% if page.bundle %}<a class="btn btn-primary" href="{{ page.bundle | relative_url }}" download>4つのスキルをまとめてダウンロード</a>{% endif %}
+  </aside>
+</article>

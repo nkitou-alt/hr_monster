@@ -1,0 +1,8 @@
+{% assign sm = site.monsters | where: "key", include.monster | first %}{% assign ss = site.skills | where: "key", include.skill | first %}
+<div class="step-head c-{{ sm.color }}" id="step-{{ include.n }}">
+  <img src="{{ sm.image | relative_url }}" alt="{{ sm.title }}">
+  <div>
+    <p class="step-label">STEP {{ include.n }}｜{{ sm.title }}{% if ss %}の「<a href="{{ ss.url | relative_url }}">{{ ss.title }}</a>」{% endif %}</p>
+    <p class="step-title">{{ include.title }}</p>
+  </div>
+</div>
