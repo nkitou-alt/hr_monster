@@ -1,0 +1,56 @@
+{% assign issue = include.issue %}{% assign sb = site.monsters | where: "key", "shirabel" | first %}
+<section class="news-hero">
+  <div class="wrap narrow">
+    <div class="news-masthead">
+      <img src="{{ sb.image | relative_url }}" alt="シラベル">
+      <div>
+        <p class="news-kicker">シラベルの HR ニュース</p>
+        <h1>{{ issue.date | date: "%Y年%-m月%-d日" }}</h1>
+        <p class="lead">{{ issue.lead }}</p>
+      </div>
+    </div>
+    <nav class="news-cats" aria-label="カテゴリ">
+      {% for c in site.data.news_categories %}{% assign n = issue.items | where: "cat", c.key | size %}{% if n > 0 %}
+      <a href="#cat-{{ c.key }}" class="c-{{ c.color }}">{{ c.name }}<small>{{ n }}</small></a>
+      {% endif %}{% endfor %}
+    </nav>
+    <div class="news-filter" role="group" aria-label="地域で絞り込む">
+      <button class="is-on" data-region="all">すべて</button>
+      <button data-region="国内">国内</button>
+      <button data-region="海外">海外</button>
+    </div>
+  </div>
+</section>
+
+<div class="wrap narrow news-body">
+  {% for c in site.data.news_categories %}{% assign list = issue.items | where: "cat", c.key %}{% if list.size > 0 %}
+  <section class="news-cat" id="cat-{{ c.key }}">
+    <h2 class="news-cat-title c-{{ c.color }}"><span>{{ c.name }}</span><small>{{ c.desc }}</small></h2>
+    {% for it in list %}
+    <article class="news-item" data-region="{{ it.region }}">
+      <div class="ni-meta">
+        <span class="region region-{% if it.region == '海外' %}global{% else %}jp{% endif %}">{{ it.region }}</span>
+        <span>{{ it.source }}</span>
+        <span>{{ it.published }}</span>
+      </div>
+      <h3>{{ it.title }}</h3>
+      <p class="ni-summary">{{ it.summary }}</p>
+      <a class="ni-link" href="{{ it.source_url }}" target="_blank" rel="noopener">元の記事を読む ↗</a>
+      <div class="ni-insight">
+        <p class="ni-insight-label"><img src="{{ sb.image | relative_url }}" alt="">シラベルの深読み</p>
+        <p>{{ it.insight }}</p>
+        {% if it.question %}<p class="ni-question">{{ it.question }}</p>{% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+  {% endif %}{% endfor %}
+
+  <p class="note">「シラベルの深読み」は、AIのシラベルによる見方です。要約はシラベルが書き直したもので、正確な内容は元の記事でご確認ください。</p>
+
+  {% assign all = site.news | sort: "date" | reverse %}
+  <nav class="news-archive">
+    <p class="news-archive-title">バックナンバー</p>
+    {% for n in all limit: 14 %}<a href="{{ n.url | relative_url }}" {% if n.url == issue.url %}class="is-current"{% endif %}>{{ n.date | date: "%-m/%-d" }}</a>{% endfor %}
+  </nav>
+</div>

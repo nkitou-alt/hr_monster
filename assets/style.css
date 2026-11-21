@@ -275,3 +275,48 @@ img { display: block; max-width: 100%; }
   .home-feature { grid-template-columns: 1fr; padding: 24px; }
   .prose table { display: block; overflow-x: auto; }
 }
+
+/* news */
+.news-hero { background: linear-gradient(135deg, var(--sky), var(--lavender)); padding: 40px 0 28px; }
+.news-masthead { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; }
+.news-masthead img { width: 96px; height: 96px; border-radius: 24px; object-fit: cover; box-shadow: var(--shadow); flex-shrink: 0; }
+.news-kicker { margin: 0; font-size: 13px; font-weight: 900; color: #2c6aa3; letter-spacing: .08em; }
+.news-masthead h1 { font-size: clamp(26px, 4vw, 36px); font-weight: 900; margin: 2px 0 4px; }
+.news-cats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.news-cats a { display: inline-flex; align-items: center; gap: 6px; background: #fff; border-radius: 999px; padding: 5px 14px; font-size: 13px; font-weight: 700; text-decoration: none; }
+.news-cats small { background: var(--tone); border-radius: 999px; padding: 0 7px; font-size: 11px; }
+.news-filter { display: inline-flex; background: rgba(255,255,255,.6); border-radius: 999px; padding: 4px; }
+.news-filter button { font: inherit; font-size: 13px; font-weight: 700; border: 0; background: transparent; color: var(--sub); padding: 4px 16px; border-radius: 999px; cursor: pointer; }
+.news-filter button.is-on { background: var(--ink); color: #fff; }
+.news-body { padding-top: 24px; padding-bottom: 64px; }
+.news-cat { margin-top: 36px; scroll-margin-top: 90px; }
+.news-cat-title { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; background: var(--tone); border-radius: 16px; padding: 10px 18px; margin: 0 0 16px; font-size: 20px; font-weight: 900; }
+.news-cat-title small { font-size: 12px; font-weight: 500; color: var(--sub); }
+.news-item { background: var(--paper); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 14px; box-shadow: var(--shadow); }
+.ni-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 12px; color: var(--sub); }
+.region { font-weight: 900; border-radius: 999px; padding: 0 10px; font-size: 11px; }
+.region-jp { background: var(--pink); color: #b33a5c; }
+.region-global { background: var(--sky); color: #2c6aa3; }
+.news-item h3 { font-size: 18px; font-weight: 900; line-height: 1.6; margin: 8px 0; }
+.ni-summary { margin: 0 0 8px; font-size: 15px; }
+.ni-link { font-size: 13px; font-weight: 700; color: var(--green); text-decoration: none; }
+.ni-link:hover { text-decoration: underline; }
+.ni-insight { background: var(--bg); border-radius: 16px; padding: 14px 16px; margin-top: 14px; font-size: 14px; }
+.ni-insight p { margin: 0 0 8px; }
+.ni-insight-label { display: flex; align-items: center; gap: 8px; font-weight: 900; color: #2c6aa3; }
+.ni-insight-label img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; }
+.ni-question { margin: 4px 0 0 !important; font-weight: 700; padding-left: 14px; border-left: 4px solid var(--green); }
+.news-archive { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 32px; }
+.news-archive-title { margin: 0 8px 0 0; font-weight: 900; font-size: 14px; }
+.news-archive a { background: var(--paper); border-radius: 999px; padding: 2px 12px; font-size: 13px; text-decoration: none; box-shadow: var(--shadow); }
+.news-archive a.is-current { background: var(--ink); color: #fff; }
+.home-news { display: grid; gap: 12px; }
+.home-news a { display: flex; gap: 12px; align-items: baseline; background: var(--paper); border-radius: 16px; padding: 14px 18px; text-decoration: none; box-shadow: var(--shadow); }
+.home-news a:hover strong { color: var(--green); }
+.home-news .hn-cat { font-size: 11px; font-weight: 900; background: var(--tone); border-radius: 999px; padding: 1px 10px; white-space: nowrap; }
+.home-news strong { font-size: 15px; line-height: 1.6; transition: color .15s; }
+@media (max-width: 760px) {
+  .news-masthead img { width: 72px; height: 72px; }
+  .news-item { padding: 18px; }
+  .home-news a { flex-direction: column; gap: 4px; }
+}

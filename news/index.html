@@ -1,0 +1,11 @@
+---
+layout: default
+title: シラベルのHRニュース
+description: 国内外の人事ニュースを、シラベルが毎朝8つのカテゴリから選んで深読みします。
+---
+{% assign latest = site.news | sort: "date" | last %}
+{% if latest %}
+  {% include news-issue.html issue=latest %}
+{% else %}
+  <div class="wrap section"><p class="empty">準備中です。</p></div>
+{% endif %}

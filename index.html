@@ -33,6 +33,21 @@ layout: default
   </div>
 </section>
 
+{% assign latest = site.news | sort: "date" | last %}
+{% if latest %}
+<section class="wrap section" style="padding-top:0">
+  <div class="section-head">
+    <h2>シラベルのHRニュース <small style="font-size:14px;color:var(--sub);font-weight:500">{{ latest.date | date: "%-m月%-d日" }}</small></h2>
+    <a class="more" href="{{ '/news/' | relative_url }}">今日のニュースを全部見る →</a>
+  </div>
+  <div class="home-news">
+    {% for c in site.data.news_categories limit: 5 %}{% assign it = latest.items | where: "cat", c.key | first %}{% if it %}
+    <a href="{{ latest.url | relative_url }}#cat-{{ c.key }}" class="c-{{ c.color }}"><span class="hn-cat">{{ c.name }}</span><strong>{{ it.title }}</strong></a>
+    {% endif %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+
 <section class="wrap section" style="padding-top:0">
   <a class="home-feature" href="{{ '/training/' | relative_url }}">
     <div>
