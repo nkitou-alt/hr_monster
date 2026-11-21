@@ -1,0 +1,26 @@
+---
+layout: default
+title: モンスター図鑑
+---
+<div class="wrap section">
+  <header class="page-head">
+    <h1>モンスター図鑑</h1>
+    <p class="lead">それぞれ得意技を持った、人事の仕事を手伝うモンスターたち。気になる子をクリックすると、使えるスキルが見られます。</p>
+  </header>
+  <div class="dex">
+    {% assign monsters = site.monsters | sort: "no" %}
+    {% for m in monsters %}
+    <a class="dex-row" href="{{ m.url | relative_url }}">
+      <img class="c-{{ m.color }}" src="{{ m.image | relative_url }}" alt="{{ m.title }}" loading="lazy">
+      <div>
+        <p class="mp-role">{{ m.no }} / {{ m.role_en }}</p>
+        <h2>{{ m.title }}</h2>
+        <p class="dex-catch">{{ m.catch }}</p>
+        <p class="dex-desc">{{ m.desc }}</p>
+        <p class="dex-origin">名前の由来：{{ m.origin }}</p>
+        <p class="dex-skill">得意技：{{ m.specialties | join: "、" }}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>

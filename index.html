@@ -3,32 +3,73 @@ layout: default
 ---
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">{{ site.tagline }}</p>
-    <h1 class="hero-title">人事の暗黙知を、<br>AIと再現できる<span class="accent">コンテキスト</span>へ。</h1>
-    <p class="hero-lead">{{ site.description }}</p>
+    <div class="hero-visual">
+      <img src="{{ '/assets/img/hero.jpg' | relative_url }}" alt="HR Monster — 人事の仕事を手伝うモンスターたち">
+    </div>
+    <div class="hero-copy">
+      <h1>人事の仕事を、<br class="sp">モンスターに任せよう。</h1>
+      <p>人事の仕事を代わりにこなすAIスキルを、無料で公開しています。<br>リサーチ、TODO管理、目標づくり。得意技を持ったモンスターたちが、あなたのチームに加わります。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ '/monsters/' | relative_url }}">モンスターに会う</a>
+        <a class="btn" href="{{ '/guide/' | relative_url }}">スキルの使い方</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="wrap section">
-  <h2 class="section-title">テーマ</h2>
-  <div class="cards">
-    {% for c in site.categories_meta %}
-      {% assign key = c[0] %}{% assign posts = site.categories[key] %}
-      <a class="card" href="{{ '/posts/' | relative_url }}#{{ key }}">
-        <span class="card-name">{{ c[1].name }}</span>
-        <span class="card-desc">{{ c[1].desc }}</span>
-        <span class="card-count">{{ posts | size }} 本</span>
-      </a>
-    {% endfor %}
+  <div class="section-head">
+    <h2>モンスター図鑑</h2>
+    <a class="more" href="{{ '/monsters/' | relative_url }}">すべて見る →</a>
+  </div>
+  <div class="monster-grid">
+    {% assign monsters = site.monsters | sort: "no" %}
+    {% for m in monsters %}{% include monster-card.html monster=m %}{% endfor %}
+    <div class="monster-card monster-soon">
+      <span class="soon-mark">?</span>
+      <span class="mc-name">なかま募集中</span>
+      <span class="mc-catch">新しいモンスターが続々登場予定</span>
+    </div>
+  </div>
+</section>
+
+<section class="howto">
+  <div class="wrap section">
+    <div class="section-head"><h2>使い方は2通り</h2></div>
+    <div class="howto-grid">
+      <div class="howto-card">
+        <span class="howto-label">しっかり使うなら</span>
+        <h3>スキル版をダウンロード</h3>
+        <p>ZIPファイルをClaudeに登録すると、関係する依頼をしたときにAIが自動でスキルを使います。毎回の説明は不要です。</p>
+      </div>
+      <div class="howto-card">
+        <span class="howto-label">まず試すなら</span>
+        <h3>かんたん版をコピー</h3>
+        <p>プロンプトをコピーして、ChatGPTやClaudeなど普段のAIに貼るだけ。登録は不要です。</p>
+      </div>
+    </div>
+    <p class="center"><a class="more" href="{{ '/guide/' | relative_url }}">スキルってなに？という方はこちら →</a></p>
   </div>
 </section>
 
 <section class="wrap section">
-  <h2 class="section-title">新着記事</h2>
-  <ul class="post-list">
-    {% for post in site.posts limit: 6 %}
-      {% include post-item.html post=post %}
-    {% endfor %}
+  <div class="section-head">
+    <h2>新着スキル</h2>
+    <a class="more" href="{{ '/skills/' | relative_url }}">すべて見る →</a>
+  </div>
+  <div class="skill-grid">
+    {% assign skills = site.skills | sort: "updated" | reverse %}
+    {% for s in skills limit: 6 %}{% include skill-card.html skill=s %}{% endfor %}
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="section-head">
+    <h2>スキルから生まれた記事・ツール</h2>
+    <a class="more" href="{{ '/articles/' | relative_url }}">記事一覧 →</a>
+  </div>
+  <ul class="output-list">
+    {% for p in site.posts limit: 5 %}{% include output-item.html item=p kind="post" %}{% endfor %}
+    {% for t in site.tools limit: 3 %}{% include output-item.html item=t kind="tool" %}{% endfor %}
   </ul>
-  <p class="more"><a href="{{ '/posts/' | relative_url }}">すべての記事を見る →</a></p>
 </section>

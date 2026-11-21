@@ -1,0 +1,41 @@
+---
+layout: default
+---
+{% assign m = page %}
+<section class="monster-hero c-{{ m.color }}">
+  <div class="wrap monster-profile">
+    <img class="mp-img" src="{{ m.image | relative_url }}" alt="{{ m.title }}">
+    <div>
+      <p class="mp-role">{{ m.no }} / {{ m.role_en }}</p>
+      <h1>{{ m.title }}</h1>
+      <p class="mp-catch">{{ m.catch }}</p>
+      <p class="mp-desc">{{ m.desc }}</p>
+      <dl class="mp-facts">
+        <dt>名前の由来</dt><dd>{{ m.origin }}</dd>
+        <dt>得意技</dt><dd>{{ m.specialties | join: "、" }}</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<div class="wrap section">
+  {% assign body = content | strip %}{% if body != "" %}<div class="prose narrow-block">{{ content }}</div>{% endif %}
+
+  <div class="section-head"><h2>{{ m.title }}のスキル</h2></div>
+  {% assign skills = site.skills | where: "monster", m.key %}
+  {% if skills.size > 0 %}
+    <div class="skill-grid">{% for s in skills %}{% include skill-card.html skill=s %}{% endfor %}</div>
+  {% else %}
+    <p class="empty">スキルを準備中です。</p>
+  {% endif %}
+
+  {% assign posts = site.posts | where: "monster", m.key %}
+  {% assign tools = site.tools | where: "monster", m.key %}
+  {% if posts.size > 0 or tools.size > 0 %}
+    <div class="section-head mt"><h2>{{ m.title }}がつくったもの</h2></div>
+    <ul class="output-list">
+      {% for p in posts %}{% include output-item.html item=p kind="post" %}{% endfor %}
+      {% for t in tools %}{% include output-item.html item=t kind="tool" %}{% endfor %}
+    </ul>
+  {% endif %}
+</div>

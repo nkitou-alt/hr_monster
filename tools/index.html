@@ -1,0 +1,20 @@
+---
+layout: default
+title: ツール
+---
+<div class="wrap section">
+  <header class="page-head">
+    <h1>ツール</h1>
+    <p class="lead">モンスターたちのスキルでつくった、ブラウザでそのまま使える人事ツールです。</p>
+  </header>
+  {% if site.tools.size > 0 %}
+  <ul class="output-list">
+    {% for t in site.tools %}{% include output-item.html item=t kind="tool" %}{% endfor %}
+  </ul>
+  {% else %}
+  <div class="coming">
+    <p class="coming-title">ただいま製作中</p>
+    <p>モンスターたちがツールをつくっています。もう少しお待ちください。</p>
+  </div>
+  {% endif %}
+</div>

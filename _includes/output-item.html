@@ -1,0 +1,15 @@
+{% assign o = include.item %}{% assign om = site.monsters | where: "key", o.monster | first %}
+<li class="output-item">
+  <a href="{{ o.url | relative_url }}">
+    {% if om %}<img src="{{ om.image | relative_url }}" alt="{{ om.title }}" loading="lazy">{% endif %}
+    <span class="oi-body">
+      <span class="oi-meta">
+        <span class="kind kind-{{ include.kind }}">{% if include.kind == "tool" %}ツール{% else %}記事{% endif %}</span>
+        {% if o.date %}<time>{{ o.date | date: "%Y.%m.%d" }}</time>{% endif %}
+        {% if om %}<span>by {{ om.title }}</span>{% endif %}
+      </span>
+      <span class="oi-title">{{ o.title }}</span>
+      <span class="oi-desc">{{ o.summary | default: o.description | default: o.excerpt | strip_html | strip_newlines | truncate: 80 }}</span>
+    </span>
+  </a>
+</li>

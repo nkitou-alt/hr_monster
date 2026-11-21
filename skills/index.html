@@ -1,0 +1,20 @@
+---
+layout: default
+title: スキル一覧
+---
+<div class="wrap section">
+  <header class="page-head">
+    <h1>スキル一覧</h1>
+    <p class="lead">人事の仕事をAIに任せるためのスキルです。すべて無料。<a href="{{ '/guide/' | relative_url }}">はじめての方はこちら</a>。</p>
+  </header>
+  {% assign monsters = site.monsters | sort: "no" %}
+  {% for m in monsters %}
+    {% assign skills = site.skills | where: "monster", m.key %}
+    {% if skills.size > 0 %}
+    <section class="skill-group">
+      <h2 class="group-title"><img src="{{ m.image | relative_url }}" alt="">{{ m.title }}<small>{{ m.catch }}</small></h2>
+      <div class="skill-grid">{% for s in skills %}{% include skill-card.html skill=s %}{% endfor %}</div>
+    </section>
+    {% endif %}
+  {% endfor %}
+</div>

@@ -1,0 +1,21 @@
+---
+layout: default
+---
+{% assign m = site.monsters | where: "key", page.monster | first %}
+{% assign s = site.skills | where: "key", page.skill | first %}
+<article class="wrap narrow article">
+  <header class="article-head">
+    <div class="oi-meta"><span class="kind kind-tool">ツール</span></div>
+    <h1>{{ page.title }}</h1>
+    {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+    {% if m %}
+    <div class="made-by c-{{ m.color }}">
+      <img src="{{ m.image | relative_url }}" alt="{{ m.title }}">
+      <span>このツールは <a href="{{ m.url | relative_url }}">{{ m.title }}</a>{% if s %} の「<a href="{{ s.url | relative_url }}">{{ s.title }}</a>」スキル{% endif %}でつくりました</span>
+    </div>
+    {% endif %}
+  </header>
+  <div class="tool-body">
+    {{ content }}
+  </div>
+</article>

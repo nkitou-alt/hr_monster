@@ -1,0 +1,15 @@
+---
+layout: default
+title: 記事
+---
+<div class="wrap section">
+  <header class="page-head">
+    <h1>記事</h1>
+    <p class="lead">モンスターたちのスキルでつくった人事の記事です。どのスキルで書いたかも公開しています。</p>
+  </header>
+  {% if site.posts.size > 0 %}
+  <ul class="output-list">
+    {% for p in site.posts %}{% include output-item.html item=p kind="post" %}{% endfor %}
+  </ul>
+  {% else %}<p class="empty">準備中です。</p>{% endif %}
+</div>

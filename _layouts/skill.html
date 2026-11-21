@@ -1,0 +1,61 @@
+---
+layout: default
+---
+{% assign m = site.monsters | where: "key", page.monster | first %}
+<section class="skill-hero {% if m %}c-{{ m.color }}{% endif %}">
+  <div class="wrap narrow">
+    {% if m %}
+    <a class="skill-owner" href="{{ m.url | relative_url }}">
+      <img src="{{ m.image | relative_url }}" alt="{{ m.title }}">
+      <span><small>{{ m.role_en }}</small>{{ m.title }}のスキル</span>
+    </a>
+    {% endif %}
+    <h1>{{ page.title }}</h1>
+    <p class="lead">{{ page.summary }}</p>
+    {% if page.updated %}<p class="updated">最終更新 {{ page.updated | date: "%Y.%m.%d" }}</p>{% endif %}
+  </div>
+</section>
+
+<div class="wrap narrow section">
+  <div class="get-grid">
+    {% if page.download %}
+    <div class="get-card">
+      <span class="howto-label">しっかり使うなら</span>
+      <h2>スキル版</h2>
+      <p>ZIPをClaudeに登録すると、関係する依頼のたびに自動で使われます。</p>
+      <a class="btn btn-primary" href="{{ page.download | relative_url }}" download>ZIPをダウンロード</a>
+      {% if page.source %}<a class="sub-link" href="{{ site.repo_url }}/blob/main/{{ page.source }}" target="_blank" rel="noopener">中身（SKILL.md）を見る</a>{% endif %}
+      <a class="sub-link" href="{{ '/guide/' | relative_url }}#install">登録のしかた</a>
+    </div>
+    {% endif %}
+    {% if page.prompt %}
+    <div class="get-card">
+      <span class="howto-label">まず試すなら</span>
+      <h2>かんたん版</h2>
+      <p>下のプロンプトをコピーして、普段使っているAIに貼るだけです。</p>
+      <button class="btn copy-btn" data-copy-target="prompt-text">プロンプトをコピー</button>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if page.prompt %}
+  <div class="prompt-box">
+    <div class="prompt-head"><span>かんたん版プロンプト</span><button class="copy-mini copy-btn" data-copy-target="prompt-text">コピー</button></div>
+    <pre id="prompt-text">{{ page.prompt | escape }}</pre>
+  </div>
+  {% endif %}
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  {% assign posts = site.posts | where: "skill", page.key %}
+  {% assign tools = site.tools | where: "skill", page.key %}
+  {% if posts.size > 0 or tools.size > 0 %}
+    <div class="section-head mt"><h2>このスキルから生まれたもの</h2></div>
+    <ul class="output-list">
+      {% for p in posts %}{% include output-item.html item=p kind="post" %}{% endfor %}
+      {% for t in tools %}{% include output-item.html item=t kind="tool" %}{% endfor %}
+    </ul>
+  {% endif %}
+</div>

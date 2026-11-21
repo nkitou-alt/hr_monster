@@ -1,0 +1,13 @@
+{% assign s = include.skill %}{% assign sm = site.monsters | where: "key", s.monster | first %}
+<a class="skill-card" href="{{ s.url | relative_url }}">
+  {% if sm %}<img class="sc-icon" src="{{ sm.image | relative_url }}" alt="{{ sm.title }}" loading="lazy">{% endif %}
+  <span class="sc-body">
+    <span class="sc-by">{% if sm %}{{ sm.title }}のスキル{% endif %}</span>
+    <span class="sc-title">{{ s.title }}</span>
+    <span class="sc-summary">{{ s.summary }}</span>
+    <span class="sc-badges">
+      {% if s.download %}<span class="badge">スキル版</span>{% endif %}
+      {% if s.prompt %}<span class="badge badge-soft">かんたん版</span>{% endif %}
+    </span>
+  </span>
+</a>

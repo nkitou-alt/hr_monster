@@ -1,26 +1,43 @@
 title: HR Monster
-tagline: 人事 × AI の実践ノウハウ
-description: 人事の現場で培ったノウハウを「コンテキスト」として言語化し、AIと一緒に再現できる形で公開していく個人サイトです。
+tagline: 人事の仕事を、モンスターに任せよう。
+description: 人事の仕事を代わりにこなすAIスキルと、そのスキルから生まれた記事・ツールを公開するサイトです。スキルはダウンロードしても、プロンプトをコピーしても使えます。
 author: Nobuaki
 lang: ja
 
-# GitHub Pages（https://nkitou-alt.github.io/hr_monster/）用の設定
+# GitHub Pages（https://nkitou-alt.github.io/hr_monster/）
 url: https://nkitou-alt.github.io
 baseurl: /hr_monster
+repo_url: https://github.com/nkitou-alt/hr_monster
 
-permalink: /posts/:year/:month/:day/:title/
 timezone: Asia/Tokyo
 markdown: kramdown
+permalink: /articles/:year/:month/:title/
 
-# カテゴリ（記事の categories にこの key を書く）
-categories_meta:
-  training: { name: 研修設計, desc: 研修をゼロから設計し、AIで回せる形にする }
-  management: { name: マネジメント育成, desc: マネジャーの育成とコーチング }
-  org: { name: 組織開発, desc: サーベイ、対話、組織の状態を見る技術 }
-  ai: { name: AI活用, desc: 人事業務でのAI・自動化の実例 }
+collections:
+  monsters:
+    output: true
+    permalink: /monsters/:name/
+  skills:
+    output: true
+    permalink: /skills/:name/
+  tools:
+    output: true
+    permalink: /tools/:name/
+
+defaults:
+  - scope: { path: "", type: monsters }
+    values: { layout: monster }
+  - scope: { path: "", type: skills }
+    values: { layout: skill }
+  - scope: { path: "", type: tools }
+    values: { layout: tool }
+  - scope: { path: "", type: posts }
+    values: { layout: post }
 
 plugins:
   - jekyll-feed
 
 exclude:
   - README.md
+  - _templates
+  - skill-files

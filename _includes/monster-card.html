@@ -1,0 +1,7 @@
+{% assign m = include.monster %}
+<a class="monster-card c-{{ m.color }}" href="{{ m.url | relative_url }}">
+  <img src="{{ m.image | relative_url }}" alt="{{ m.title }}" loading="lazy">
+  <span class="mc-role">{{ m.no }} / {{ m.role_en }}</span>
+  <span class="mc-name">{{ m.title }}</span>
+  <span class="mc-catch">{{ m.catch }}</span>
+</a>
