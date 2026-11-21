@@ -1,0 +1,26 @@
+title: HR Monster
+tagline: 人事 × AI の実践ノウハウ
+description: 人事の現場で培ったノウハウを「コンテキスト」として言語化し、AIと一緒に再現できる形で公開していく個人サイトです。
+author: Nobuaki
+lang: ja
+
+# GitHub Pages（https://nkitou-alt.github.io/hr_monster/）用の設定
+url: https://nkitou-alt.github.io
+baseurl: /hr_monster
+
+permalink: /posts/:year/:month/:day/:title/
+timezone: Asia/Tokyo
+markdown: kramdown
+
+# カテゴリ（記事の categories にこの key を書く）
+categories_meta:
+  training: { name: 研修設計, desc: 研修をゼロから設計し、AIで回せる形にする }
+  management: { name: マネジメント育成, desc: マネジャーの育成とコーチング }
+  org: { name: 組織開発, desc: サーベイ、対話、組織の状態を見る技術 }
+  ai: { name: AI活用, desc: 人事業務でのAI・自動化の実例 }
+
+plugins:
+  - jekyll-feed
+
+exclude:
+  - README.md

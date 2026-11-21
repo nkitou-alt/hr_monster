@@ -1,0 +1,34 @@
+---
+layout: default
+---
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">{{ site.tagline }}</p>
+    <h1 class="hero-title">人事の暗黙知を、<br>AIと再現できる<span class="accent">コンテキスト</span>へ。</h1>
+    <p class="hero-lead">{{ site.description }}</p>
+  </div>
+</section>
+
+<section class="wrap section">
+  <h2 class="section-title">テーマ</h2>
+  <div class="cards">
+    {% for c in site.categories_meta %}
+      {% assign key = c[0] %}{% assign posts = site.categories[key] %}
+      <a class="card" href="{{ '/posts/' | relative_url }}#{{ key }}">
+        <span class="card-name">{{ c[1].name }}</span>
+        <span class="card-desc">{{ c[1].desc }}</span>
+        <span class="card-count">{{ posts | size }} 本</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap section">
+  <h2 class="section-title">新着記事</h2>
+  <ul class="post-list">
+    {% for post in site.posts limit: 6 %}
+      {% include post-item.html post=post %}
+    {% endfor %}
+  </ul>
+  <p class="more"><a href="{{ '/posts/' | relative_url }}">すべての記事を見る →</a></p>
+</section>
